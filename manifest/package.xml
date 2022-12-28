@@ -1,35 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>LWCController</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>pdfGenerationWithLWC</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>tableWithLinks</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>*</members>
+        <members>LightningOutApp</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>jsPdf</members>
+        <members>html2canvas</members>
         <name>StaticResource</name>
     </types>
     <version>55.0</version>

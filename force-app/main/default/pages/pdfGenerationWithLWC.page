@@ -1,0 +1,42 @@
+<apex:page controller="LWCController">
+    <apex:includeLightning />
+    <apex:includeScript value="{!$Resource.jsPdf}" />
+    <apex:includeScript value="{!$Resource.html2canvas}" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.js"></script> -->
+    <apex:slds />
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-text_align-right">
+            <button class="slds-button slds-button_brand" onclick="downldPDF()">Download</button>
+        </div>
+        <div class="slds-col slds-size_1-of-1" id="lwc-id"></div>
+    </div>
+    <script>
+        var componentName = "c:tableWithLinks";
+        $Lightning.use("c:LightningOutApp", function () {
+            $Lightning.createComponent(componentName,
+                {
+                },
+                "lwc-id",
+                (cmp) => {
+                }
+            );
+        });
+
+        async function downldPDF() {
+            var elementHTML = document.querySelector("#lwc-id");
+            await html2canvas(elementHTML, { useCORS: true }).then(canv => {
+                const imgData = canv.toDataURL('image/png', 1.0);
+                window.jsPDF = window.jspdf.jsPDF;
+                var pdf = new jsPDF({
+                    orientation: 'landscape'
+                });
+                pdf.addImage(imgData, 'imgData', 0, 0);
+                pdf.save("download.pdf");
+            }).catch(res => {
+                throw new Error(res);
+            });
+        }
+
+    </script>
+</apex:page>
