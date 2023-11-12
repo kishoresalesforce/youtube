@@ -9,4 +9,14 @@ public with sharing class LWCController {
         }
     }
 
+    @AuraEnabled(cacheable = true)
+    public static string getRecordName(Id recordId) {
+        try {
+            return (String)Database.query('SELECT Id, Name FROM ' + recordId.getSObjectType().getDescribe().getName() + ' WHERE Id=:recordId')[0]?.get('Name');
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+    }
+
 }
